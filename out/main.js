@@ -1,0 +1,6 @@
+import Bot from './bot';
+const bot = new Bot();
+bot.commands.set('hello', {
+    help: '2'
+});
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFpbi5qcyIsInNvdXJjZVJvb3QiOiIuL3NyYy8iLCJzb3VyY2VzIjpbIm1haW4udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxHQUFHLE1BQU0sT0FBTyxDQUFBO0FBRXZCLE1BQU0sR0FBRyxHQUFHLElBQUksR0FBRyxFQUFFLENBQUE7QUFDckIsR0FBRyxDQUFDLFFBQVEsQ0FBQyxHQUFHLENBQUMsT0FBTyxFQUFFO0lBQ3hCLElBQUksRUFBRSxHQUFHO0NBQ1YsQ0FBQyxDQUFBIn0=

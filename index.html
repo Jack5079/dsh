@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coming soon.</title>
+  <style>
+    html {
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-family: sans-serif;
+      text-align: center;
+      background: black;
+      height: 100%;
+      color: white;
+    }
+  </style>
+  <link rel="stylesheet" href="style.css">
+    <link rel='shortcut icon' type='image/svg+xml' href='icon.svg' />
+
+</head>
+<body>
+  <img id="logo" data-hover="dash" src="icon.svg" width="500px" alt="DSH">
+  <p>click the logo to find out how to pronounce it</p>
+  <h1>coming soon</h1>
+  <details>
+    <summary aria-label="Info">?</summary>
+    <p>
+      nxt but web i guess
+    </p>
+  </details>
+  <script>
+    document.getElementById('logo').addEventListener('click', ()=>{
+      speechSynthesis.speak(
+        new SpeechSynthesisUtterance(
+         'dash'
+        )
+      )
+    })
+  </script>
+</body>
+</html>

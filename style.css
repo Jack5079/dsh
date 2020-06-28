@@ -1,0 +1,47 @@
+details>summary {
+  list-style: none;
+}
+
+details>summary::-webkit-details-marker {
+  display: none;
+}
+
+details {
+  position: absolute;
+  top: 1em;
+  padding: 1em;
+  right: 1em;
+  text-align: right;
+}
+
+details>p {
+  background: white;
+  color: black;
+  border-radius: 1em;
+  padding: 1em;
+}
+
+summary {
+  box-shadow: black 0 0 5px;
+  background: darkslategray;
+  display: inline-block;
+  border-radius: 1em;
+  color: white;
+  padding: 1em;
+}
+
+body {
+  background: black;
+  color: white;
+  font-family: monospace;
+}
+input {
+  font-family: monospace;
+  padding: 1em;
+  color: white;
+  border-radius: 1em;
+  background: none;
+  outline: none;
+  border: solid blue 0.1em;
+  width: 50%;
+}

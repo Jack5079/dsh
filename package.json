@@ -1,0 +1,16 @@
+{
+  "name": "dsh",
+  "version": "1.0.0",
+  "description": "an attempt to port nxt to the web",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^3.9.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
