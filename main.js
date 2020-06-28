@@ -15,6 +15,7 @@
  * @typedef CommandObj
  * @type {object}
  * @property {(this: bot, message: Message, args: string[])=>void | string | MessageOptions} run
+ * @property {string[]} [aliases]
  */
 const bot = {
   /** @type {Map<string, CommandObj>} */
@@ -39,7 +40,7 @@ form.addEventListener('submit', async (event) => {
         ele.innerText = content
         if (typeof opt !== 'string' && opt.files) {
           opt.files.forEach(async ({ attachment }) => {
-            const file = typeof attachment === 'string' ? await fetch(attachment).then(res => res.blob()) : attachment
+            const file = typeof attachment === 'string' ? await fetch('https://cors-anywhere.herokuapp.com/' + attachment).then(res => res.blob()) : attachment
             if (file.type.startsWith('image/')) {
               const img = new Image
               img.src = typeof attachment === 'string' ? attachment : URL.createObjectURL(file)
@@ -65,7 +66,7 @@ form.addEventListener('submit', async (event) => {
   const name = [...bot.commands.keys(), ...bot.aliases.keys()].find(
     cmdname =>
       content.startsWith(`${cmdname} `) || // matches any command with a space after
-      content === `${cmdname}` // matches any command without arguments
+      content === cmdname // matches any command without arguments
   )
   // Run the command!
   if (name) {
@@ -88,7 +89,17 @@ form.addEventListener('submit', async (event) => {
     }
   }
 })
-
+/**
+ * @param {string} name
+ * @param {CommandObj} command
+ */
+bot.commands.set = (name, command) => {
+  (command.aliases || []).forEach(alias => {
+    bot.aliases.set(alias, name)
+  })
+  Map.prototype.set.call(bot.commands, name, command)
+  return bot.commands
+}
 bot.commands.set('votepoop', {
   run: () => '😎 i voted for poop'
 })
@@ -113,5 +124,16 @@ bot.commands.set('download', {
     )}`
 
     form.before(vid)
-  }
+  },
+  aliases: ['dl']
+})
+
+bot.commands.set('credits', {
+  run: () => `
+DSH
+
+by Jack (5079.ml)
+
+Based off of NXT (also by me)
+  `.trim()
 })
