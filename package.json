@@ -1,5 +1,5 @@
 {
-  "name": "dsh",
+  "name": "jackbot-next-web",
   "version": "0.1.0",
   "description": "an attempt to port nxt to the web",
   "main": "index.js",
