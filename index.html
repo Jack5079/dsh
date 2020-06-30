@@ -3,31 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coming soon.</title>
-  <style>
-    html {
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      font-family: sans-serif;
-      text-align: center;
-      background: black;
-      height: 100%;
-      color: white;
-    }
-  </style>
+  <title>NXT Web</title>
   <link rel="stylesheet" href="style.css">
     <link rel='shortcut icon' type='image/svg+xml' href='icon.svg' />
 
 </head>
 <body>
-  <img id="logo" data-hover="dash" src="icon.svg" width="500px" alt="NXT Web">
-  <h1>coming soon</h1>
-  <details>
-    <summary aria-label="Info">?</summary>
-    <p>
-      nxt but web i guess
-    </p>
-  </details>
+  <header>
+    <img id="logo" width="100" height="50" data-hover="dash" src="icon.svg" width="500px" alt="NXT Web">
+    <div id="channel">BETA</div>
+  </header>
+  <form id="inp">
+    <input type="text" name="input" id="input" autofocus placeholder="type a command, or help to see a list of all commands" aria-label="main input">
+  </form>
+  <script src="./main.js" type="module"></script>
 </body>
 </html>

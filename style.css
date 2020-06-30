@@ -30,11 +30,17 @@ summary {
   padding: 1em;
 }
 
+html {
+  height: 100%;
+}
 body {
-  background: black;
+  background: linear-gradient(to bottom right, #000020, #242474);
+  height: 100%;
   color: white;
   font-family: monospace;
+  margin: 0;
 }
+
 input {
   position: relative;
   font-family: monospace;
@@ -45,4 +51,18 @@ input {
   outline: none;
   border: solid blue 0.1em;
   width: 50%;
+}
+
+header {
+  padding-bottom: 1em;
+  background: #000020;
+  padding: 1em;
+}
+
+#channel {
+  border-radius: 0.5em;
+  padding: 0.5em;
+  display: inline-block;
+  background: lightblue;
+  color: black;
 }
