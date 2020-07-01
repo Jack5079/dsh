@@ -12,6 +12,7 @@
 
       html {
         font-family: 'Inter', sans-serif;
+        background: black;
       }
 
       @supports (font-variation-settings: normal) {
@@ -29,24 +30,28 @@
       }
 
       main {
-        background: black;
+        background: rgba(0, 0, 0, 0.8);
         display: flex;
         justify-content: center;
         align-items: center;
       }
-      iframe {
+
+      #bg {
         display: none;
       }
+
       @media screen and (min-width: 1000px) {
         main {
           width: 50%;
         }
 
-        iframe {
-          display: block;
+        #bg {
           transform: scale(1.2);
           position: fixed;
           left: 30%;
+          display:flex;
+          justify-content:center;
+          align-items:center;
           top: 0;
           z-index: -1;
           width: 100%;
@@ -55,7 +60,11 @@
       }
 
       a {
-        color: skyblue;
+        border-radius: 0.5em;
+        padding: 0.5em;
+        display: inline-block;
+        background: skyblue;
+        color: black;
       }
     </style>
   </head>
@@ -64,13 +73,12 @@
     <main>
       <article>
         <img src="./icon.svg" alt="NXT Web">
-        <h1>An attempt to port NXT to the web. Again.</h1>
-        <p>Coming soon.</p>
+        <h1>An attempt to port NXT to the web... Again.</h1>
+        <p>Full release coming soon!</p>
         <a href="./main.html">BETA</a>
       </article>
     </main>
-    <iframe src="https://www.youtube.com/embed/-eUJgIrWONo?controls=0&autoplay=1&loop=1&mute=1" frameborder="0"
-      title="funny" aria-hidden="true"></iframe>
+    <span id="bg" style="font-size: 30em; font-family: monospace;">jackbot-next</span>
   </body>
 
 </html>
