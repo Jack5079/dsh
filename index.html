@@ -1,21 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NXT Web</title>
-  <link rel="stylesheet" href="style.css">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming soon...</title>
     <link rel='shortcut icon' type='image/svg+xml' href='icon.svg' />
 
-</head>
-<body>
-  <header>
-    <img id="logo" width="100" height="50" data-hover="dash" src="icon.svg" width="500px" alt="NXT Web">
-    <div id="channel">BETA</div>
-  </header>
-  <form id="inp">
-    <input type="text" name="input" id="input" autofocus placeholder="type a command, or help to see a list of all commands" aria-label="main input">
-  </form>
-  <script src="./main.js" type="module"></script>
-</body>
+    <style>
+      @import url('https://rsms.me/inter/inter.css');
+
+      html {
+        font-family: 'Inter', sans-serif;
+      }
+
+      @supports (font-variation-settings: normal) {
+        html {
+          font-family: 'Inter var', sans-serif;
+        }
+      }
+
+      html,
+      body,
+      main {
+        height: 100%;
+        margin: 0;
+        color: white;
+      }
+
+      main {
+        background: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      iframe {
+        display: none;
+      }
+      @media screen and (min-width: 1000px) {
+        main {
+          width: 50%;
+        }
+
+        iframe {
+          display: block;
+          transform: scale(1.2);
+          position: fixed;
+          left: 30%;
+          top: 0;
+          z-index: -1;
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      a {
+        color: skyblue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <article>
+        <img src="./icon.svg" alt="NXT Web">
+        <h1>An attempt to port NXT to the web. Again.</h1>
+        <p>Coming soon.</p>
+        <a href="./main.html">BETA</a>
+      </article>
+    </main>
+    <iframe src="https://www.youtube.com/embed/-eUJgIrWONo?controls=0&autoplay=1&loop=1&mute=1" frameborder="0"
+      title="funny" aria-hidden="true"></iframe>
+  </body>
+
 </html>
