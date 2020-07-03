@@ -17,6 +17,7 @@ if (location.hostname === 'localhost') document.getElementById('channel').innerT
  * @type {object}
  * @property {(this: bot, message: Message, args: string[])=>void | string | MessageOptions} run
  * @property {string[]} [aliases]
+ * @property {string} desc The description. Used in -help.
  */
 const bot = {
   /** @type {Map<string, CommandObj>} */
@@ -102,7 +103,8 @@ bot.commands.set = (name, command) => {
   return bot.commands
 }
 bot.commands.set('votepoop', {
-  run: () => '😎 i voted for poop'
+  run: () => '😎 i voted for poop',
+  desc: 'stupid command from jackbot (the first one)'
 })
 
 bot.commands.set('fullwidth', {
@@ -113,7 +115,8 @@ bot.commands.set('fullwidth', {
       .join('')
       .replace(/[A-Za-z0-9]/g, s => String.fromCharCode(s.charCodeAt(0) + 0xfee0))
 
-  }
+  },
+  desc: 'wide'
 })
 
 bot.commands.set('download', {
@@ -126,7 +129,8 @@ bot.commands.set('download', {
 
     form.before(vid)
   },
-  aliases: ['dl']
+  aliases: ['dl'],
+  desc: 'Downloads a video. Ironically, this uses Essem\'s servers.'
 })
 
 bot.commands.set('credits', {
@@ -136,5 +140,18 @@ nxtWeb
 by Jack (5079.ml)
 
 Based off of nxt (also by me)
-  `.trim()
+  `.trim(),
+  desc: 'who tf did this'
 })
+
+// bot.commands.set('help', {
+//   run () {
+//     const arr = Array.from(this.commands.entries(), ([name, command]) =>
+//       `${name}${command.aliases ? ` (Aliases: ${command.aliases.join(', ')})` : ''}: ${command.desc}`
+//     )
+//     console.log(arr)
+//     return arr.join('\n')
+//   },
+//   desc: 'list of commands',
+//   aliases: ['commands']
+// })
