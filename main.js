@@ -131,10 +131,10 @@ bot.commands.set('download', {
 
 bot.commands.set('credits', {
   run: () => `
-DSH
+nxtWeb
 
 by Jack (5079.ml)
 
-Based off of NXT (also by me)
+Based off of nxt (also by me)
   `.trim()
 })
