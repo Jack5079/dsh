@@ -1,3 +1,4 @@
+if (location.hostname === 'localhost') document.getElementById('channel').innerText = 'DEV'
 /**
  * @typedef MessageOptions
  * @type {object}

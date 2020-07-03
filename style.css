@@ -34,7 +34,7 @@ html {
   height: 100%;
 }
 body {
-  background: linear-gradient(to bottom right, #000020, #242474);
+  background: linear-gradient(to bottom right, #000020, #0f0f0f);
   height: 100%;
   color: white;
   font-family: monospace;
@@ -60,6 +60,7 @@ header {
 }
 
 #channel {
+  text-transform: uppercase;
   border-radius: 0.5em;
   padding: 0.5em;
   display: inline-block;
