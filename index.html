@@ -4,82 +4,39 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>👀</title>
+    <title>nxtWeb</title>
+    <link rel="stylesheet" href="style.css">
     <link rel='shortcut icon' type='image/svg+xml' href='icon.svg' />
 
-    <style>
-      @import url('https://rsms.me/inter/inter.css');
-
-      html {
-        font-family: 'Inter', sans-serif;
-        background: black;
-      }
-
-      @supports (font-variation-settings: normal) {
-        html {
-          font-family: 'Inter var', sans-serif;
-        }
-      }
-
-      html,
-      body,
-      main {
-        height: 100%;
-        margin: 0;
-        color: white;
-      }
-
-      main {
-        background: linear-gradient(to left, rgba(0, 0, 0, 0.8), black);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      #bg {
-        display: none;
-      }
-
-      @media screen and (min-width: 1000px) {
-        main {
-          width: 50%;
-        }
-
-        #bg {
-          transform: scale(1.2);
-          position: fixed;
-          left: 30%;
-          display:flex;
-          justify-content:center;
-          align-items:center;
-          font-size: 30em;
-          font-family: monospace;
-          top: 0;
-          z-index: -1;
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-      a {
-        border-radius: 0.5em;
-        padding: 0.5em;
-        display: inline-block;
-        background: skyblue;
-        color: black;
-      }
-    </style>
   </head>
 
   <body>
-    <main>
-      <article>
-        <img src="./icon.svg" alt="NXT Web">
-        <p>Full release coming soon&trade;</p>
-        <a href="./main.html">BETA</a>
-      </article>
-    </main>
-    <span id="bg" style="font-size: 30em; font-family: monospace;">jackbot-next</span>
+    <header>
+      <img id="logo" width="100" height="50" data-hover="dash" src="https://nxtbot.ml/powered by 2.svg" width="500px"
+        alt="NXT Web">
+      <div id="channel">BETA</div>
+    </header>
+    <form id="inp">
+      <input type="text" name="input" id="input" autofocus
+        placeholder="type a command, or help to see a list of all commands" aria-label="main input">
+    </form>
+    <script>
+      /**
+       * # Module Eval
+       *
+       * Runs code in a module.
+       * Works in dev tools console!
+       *
+       * Does not work in Deno or Node.
+       *
+       * @param str The code to run.
+       */
+      const moduleval = (str) => import('data:application/javascript,' + encodeURIComponent(str));
+
+      fetch('./main.js').then(res => res.text()).then(text => {
+        moduleval(text.replace('trollsmile-core', 'https://cdn.skypack.dev/trollsmile-core'))
+      })
+    </script>
   </body>
 
 </html>

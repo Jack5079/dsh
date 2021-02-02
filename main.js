@@ -1,33 +1,52 @@
 if (location.hostname === 'localhost') document.getElementById('channel').innerText = 'DEV'
+import Trollsmile from 'trollsmile-core'
 /**
- * @typedef MessageOptions
- * @type {object}
- * @property {string} content
- * @property {({name?: string, attachment: string | File | Blob}[])} files
+ * @typedef CommandObj
+ * @type {{
+ *  run(this: TrollBot, message: Message, args: string[]): Partial<Message> | string | Promise<Partial<Message> | string>
+ *  aliases?: string[]
+ * desc: string
+ * }}
  */
 /**
  * @typedef Message
- * @type {object}
- * @property {string} content
- * @property {{send: (options: MessageOptions | string)=>Message}} channel
+ * @type {{
+ *  content: string
+ *  channel: {
+ *    send (content: Partial<Message>): Message,
+ *  }
+ * files?: {attachment: Blob | string}[]
+ * }}
+ */
+/**
+ * @typedef TrollBot
+ * @type {Trollsmile<Message, CommandObj>}
  */
 
 /**
- * @typedef CommandObj
- * @type {object}
- * @property {(this: bot, message: Message, args: string[])=>void | string | MessageOptions} run
- * @property {string[]} [aliases]
- * @property {string} desc The description. Used in -help.
+ * @type {TrollBot}
  */
-const bot = {
-  /** @type {Map<string, CommandObj>} */
-  commands: new Map(),
-  /** @type {Map<string, string>} */
-  aliases: new Map(),
+class Bot extends Trollsmile {
+  filter() {
+    return true
+  }
+  /**
+   * @param {string} prefix
+   */
+  constructor(prefix) {
+    super(prefix)
+  }
 }
+
+const bot = new Bot('-')
 
 const box = document.querySelector('input')
 const form = document.querySelector('form')
+bot.on('output', ([out, msg]) => {
+  if (typeof out === 'string') {
+    msg.
+  }
+})
 form.addEventListener('submit', async (event) => {
   event.preventDefault()
   /**
@@ -36,11 +55,11 @@ form.addEventListener('submit', async (event) => {
   const message = {
     content: box.value,
     channel: {
-      send (opt) {
+      send(opt) {
         const content = typeof opt === 'string' ? opt : (opt.content || '')
         const ele = document.createElement('article')
         ele.innerText = content
-        if (typeof opt !== 'string' && opt.files) {
+        if (typeof opt !== 'string' && 'files' in opt) {
           opt.files.forEach(async ({ attachment }) => {
             const file = typeof attachment === 'string' ? await fetch('https://cors-anywhere.herokuapp.com/' + attachment).then(res => res.blob()) : attachment
             if (file.type.startsWith('image/')) {
@@ -58,45 +77,23 @@ form.addEventListener('submit', async (event) => {
         }
         form.before(ele)
         return {
-          content,
-          channel: this
+          content: opt.content,
+          files: opt.files,
+          channel: {
+            send: this.send
+          }
         }
       }
     }
   }
-  const content = message.content || ''
-  const name = [...bot.commands.keys(), ...bot.aliases.keys()].find(
-    cmdname =>
-      content.startsWith(`${cmdname} `) || // matches any command with a space after
-      content === cmdname // matches any command without arguments
-  )
-  // Run the command!
-  if (name) {
-    const command = bot.commands.get(name)?.run // The command if it found it
-      || bot.commands.get(bot.aliases.get(name) || '')?.run // Aliases
-      || (() => { }) // nothing
-
-    try {
-      const output = await command.call(
-        this,
-        message, // the message
-        // The arguments
-        content
-          .substring(1 + name.length) // only the part after the command
-          .split(' '), // split with spaces
-      )
-
-      if (output) message.channel?.send(output)
-    } catch (err) {
-    }
-  }
+  bot.emit('message', message)
 })
 /**
  * @param {string} name
  * @param {CommandObj} command
  */
 bot.commands.set = (name, command) => {
-  (command.aliases || []).forEach(alias => {
+  (command.aliases || []).forEach((/** @type {string} */ alias) => {
     bot.aliases.set(alias, name)
   })
   Map.prototype.set.call(bot.commands, name, command)
@@ -108,7 +105,7 @@ bot.commands.set('votepoop', {
 })
 
 bot.commands.set('fullwidth', {
-  run (_, args) {
+  run(_, args) {
     if (args.join('').length === 0)
       return 'give me text to convert to fullwidth!'
     return args
@@ -120,7 +117,7 @@ bot.commands.set('fullwidth', {
 })
 
 bot.commands.set('download', {
-  run (_, args) {
+  run(_, args) {
     const vid = document.createElement('video')
     vid.controls = true
     vid.src = `https://projectlounge.pw/ytdl/download?url=${encodeURIComponent(
